@@ -101,6 +101,23 @@ body.locked .wrap,body.locked nav{display:none}
 .pwrow button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--muted);padding:9px;cursor:pointer;display:inline-flex}
 .link{border:0;background:none;color:var(--green);font:600 14px inherit;font-family:inherit;cursor:pointer;padding:10px 0;margin-top:6px}
 .gfoot{font-size:12px;color:var(--muted);margin-top:22px}
+.hero{position:relative;margin:calc(-14px - env(safe-area-inset-top,0px)) -18px 0;padding:calc(env(safe-area-inset-top,0px) + 14px) 18px 44px;overflow:hidden;background:radial-gradient(60% 40% at 0% 24%,rgba(217,75,75,.6),transparent 70%),radial-gradient(60% 40% at 100% 24%,rgba(245,184,46,.55),transparent 70%),radial-gradient(70% 30% at 50% 0%,rgba(229,122,63,.3),transparent 70%),#07070A}
+.hero .top{margin-bottom:4px}.hbtn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;font:600 13px inherit;font-family:inherit;cursor:pointer}.hbtn svg{width:18px;height:18px}
+.ringbox{position:relative;width:min(76vw,300px);height:min(76vw,300px);margin:6px auto 24px}.ring{position:absolute;left:0;top:0;width:100%;height:100%}
+.rin{position:absolute;left:0;top:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}.rin small{color:#C9C2BC;font-size:14px}
+.amt{font:700 42px/1.1 "Outfit",system-ui,sans-serif;letter-spacing:-.03em;margin:4px 0 2px}.amt .cur{font-size:.55em;opacity:.8;margin-right:2px;vertical-align:.35em}.amt .dec{font-size:.5em;opacity:.65}
+.pills{display:flex;gap:6px;justify-content:center}.pills button{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:#fff;border-radius:99px;padding:9px 11px;font:600 12.5px inherit;font-family:inherit;cursor:pointer}.pills button svg{width:16px;height:16px}.pills button.pr{background:var(--grad);color:#0A0A0A;border:0}
+.sheet{--surface:#FFFFFF;--ink:#141414;--muted:#6B6258;--line:#E8DFD6;--green:#C4491A;--pos:#15803D;position:relative;margin:-24px -18px -120px;padding:20px 18px 130px;background:#FBF7F3;color:var(--ink);border-radius:28px 28px 0 0}
+.sheet h2{margin:20px 0 6px}
+.earn{display:block;width:100%;border:0;text-align:left;cursor:pointer;background:var(--grad);color:#0A0A0A;border-radius:20px;padding:14px 18px;font-family:inherit}.earn b{display:block;font:700 18px "Outfit",system-ui,sans-serif}.earn span{font-size:13px;opacity:.8}
+.sheet .car{margin:12px 0 0;border-radius:18px}.sheet .slide{min-height:104px;padding:12px 14px}.sheet .st b{font-size:17px;margin-bottom:3px}.sheet .st small{font-size:12px;margin-bottom:8px}.sheet .st button{padding:7px 12px;font-size:12px}
+.sheet .at{width:40px;height:40px;border-radius:12px}.sheet .at svg{width:20px;height:20px}.sheet .art{gap:6px}.sheet .art svg[viewBox="0 0 48 48"]{width:36px;height:36px}
+.qp{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:10px -18px 0 0;padding-right:18px}.qp::-webkit-scrollbar{display:none}.qp .tile{flex:none;width:76px}
+.at2{width:40px;height:40px;border-radius:12px;background:var(--grad);color:#0A0A0A;display:grid;place-items:center;flex:none}.seeall{border:0;background:none;color:var(--green);font:600 13px inherit;font-family:inherit;cursor:pointer;padding:0}.sheet .item>b{white-space:nowrap;flex:none}.sheet .item>div{min-width:0}
+.sheet{--err:#B3261E}
+.cchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:10px -18px 14px 0;padding-right:18px}.cchips::-webkit-scrollbar{display:none}
+.cchips button{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:7px 12px 7px 8px;font:600 14px inherit;font-family:inherit;cursor:pointer}.cchips button.on{background:var(--grad);color:var(--on-grad);border-color:transparent}
+.note{background:#FFF9E6;border:1px solid #F3E5B5;border-radius:20px;padding:12px 16px;font-size:14px;color:#141414;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px}.note .seeall{text-decoration:underline;color:#141414}.note p{flex-basis:100%;margin:2px 0 0;font-size:13px;color:#6B6258}
 </style>
 </head>
 <body class="locked">
@@ -110,7 +127,15 @@ body.locked .wrap,body.locked nav{display:none}
 <nav><div id="nb"></div></nav>
 <script>
 var RATE=1520,MIN_USD=5,MIN_WD=5000,REF="UKE-"+Math.random().toString(36).slice(2,7).toUpperCase();
-var ASSETS={USDT:{name:"Tether",net:"TRON (TRC-20)",usd:1,col:"#26A17B",sym:"₮"},BTC:{name:"Bitcoin",net:"Bitcoin",usd:95000,col:"#E58A1F",sym:"₿"},ETH:{name:"Ethereum",net:"Ethereum (ERC-20)",usd:3200,col:"#5B6EE1",sym:"Ξ"}};
+var ASSETS={
+ BTC:{name:"Bitcoin",net:"Bitcoin",usd:95000,cg:"bitcoin",xs:0},
+ ETH:{name:"Ethereum",net:"Ethereum (ERC-20)",usd:3200,cg:"ethereum",xs:0.2},
+ USDT:{name:"Tether",net:"TRON (TRC-20)",usd:1,cg:"tether",xs:0},
+ USDC:{name:"USD Coin",net:"Ethereum (ERC-20)",usd:1,cg:"usd-coin",xs:0},
+ BNB:{name:"BNB",net:"BNB Smart Chain (BEP-20)",usd:650,cg:"binancecoin",xs:0.5},
+ TRX:{name:"Tron",net:"TRON (TRC-20)",usd:0.25,cg:"tron",xs:0.5},
+ LTC:{name:"Litecoin",net:"Litecoin",usd:90,cg:"litecoin",xs:0.5},
+ SOL:{name:"Solana",net:"Solana",usd:170,cg:"solana",xs:0.2}};
 var BANKS=["Access Bank","First Bank","GTBank","Kuda","Opay","PalmPay","UBA","Zenith Bank"];
 var NET=["MTN","Glo","Airtel","9mobile"];
 var SVC={
@@ -125,7 +150,7 @@ var S={view:"home",asset:"USDT",bal:0,hide:false,hist:[],smsg:"",tmsg:"",err:"",
 var $=function(s){return document.querySelector(s)};
 var fmt=function(n){return "₦"+n.toLocaleString("en-NG",{minimumFractionDigits:2,maximumFractionDigits:2})};
 var fmt0=function(n){return "₦"+n.toLocaleString("en-NG")};
-var NAVMAP={home:"home",pay:"pay",form:"pay",done:"pay",transfer:"pay",receive:"receive",rewards:"rewards",activity:"activity"};
+var NAVMAP={home:"home",pay:"pay",form:"pay",done:"pay",transfer:"pay",receive:"receive",rewards:"home",activity:"activity",wallet:"wallet",rates:"wallet"};
 var T=null;
 var P={
  home:'<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
@@ -145,6 +170,11 @@ var P={
  arrow:'<path d="M5 12h14m0 0l-6-6m6 6l-6 6"/>'};
 function ic(n,sz){sz=sz||24;return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+P[n]+'</svg>'}
 function coin(k,sz){var m={
+ USDC:'<circle cx="24" cy="24" r="24" fill="#2775CA"/><circle cx="24" cy="24" r="12.5" fill="none" stroke="#fff" stroke-width="2.4"/><text x="24" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#fff" font-family="Arial,sans-serif">$</text>',
+ BNB:'<circle cx="24" cy="24" r="24" fill="#F0B90B"/><g fill="#fff"><path d="M24 9l4.5 4.5L24 18l-4.5-4.5z"/><path d="M13 20l4.5 4.5L13 29l-4.5-4.5z"/><path d="M35 20l4.5 4.5L35 29l-4.5-4.5z"/><path d="M24 31l4.5 4.5L24 40l-4.5-4.5z"/><path d="M24 20l4.5 4.5L24 29l-4.5-4.5z"/></g>',
+ TRX:'<circle cx="24" cy="24" r="24" fill="#E8383D"/><path d="M12 14l24 5-8 17z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M12 14l14 7 2 15M36 19l-10 2" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>',
+ LTC:'<circle cx="24" cy="24" r="24" fill="#345D9D"/><text x="24" y="33" text-anchor="middle" font-size="26" font-weight="700" fill="#fff" font-family="Arial,sans-serif" font-style="italic">Ł</text>',
+ SOL:'<circle cx="24" cy="24" r="24" fill="#111"/><path d="M16 15h19l-3 5H13z" fill="#9945FF"/><path d="M13 21.5h19l3 5H16z" fill="#5C8CEB"/><path d="M16 28h19l-3 5H13z" fill="#14F195"/>',
  USDT:'<circle cx="24" cy="24" r="24" fill="#26A17B"/><rect x="12" y="12" width="24" height="5" rx="1" fill="#fff"/><rect x="21.5" y="16" width="5" height="19" rx="1" fill="#fff"/><ellipse cx="24" cy="23" rx="10" ry="3.2" fill="none" stroke="#fff" stroke-width="2"/>',
  BTC:'<circle cx="24" cy="24" r="24" fill="#F7931A"/><g transform="rotate(12 24 24)"><text x="24" y="33" text-anchor="middle" font-size="26" font-weight="700" fill="#fff" font-family="Arial,sans-serif">B</text><path d="M21 11v4M27 11v4M21 33v4M27 33v4" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></g>',
  ETH:'<circle cx="24" cy="24" r="24" fill="#627EEA"/><path d="M24 8l-9 15 9 5 9-5z" fill="#fff" opacity=".9"/><path d="M24 30l-9-5.5L24 40l9-15.5z" fill="#fff" opacity=".7"/>'};
@@ -174,7 +204,7 @@ function setupCar(){
   el.addEventListener("pointerup",function(){setTimeout(start,4000)});el.addEventListener("pointercancel",function(){setTimeout(start,4000)});
   mark();start();
 }
-var NAV=[["home","Home","home"],["pay","Pay","pay"],["receive","Receive","receive"],["rewards","Rewards","gift"],["activity","Activity","clock"]];
+var NAV=[["home","Home","home"],["wallet","Wallet","wallet"],["receive","Receive","receive"],["pay","Pay","pay"],["activity","Activity","clock"]];
 function buildNav(){$("#nb").innerHTML=NAV.map(function(n){return '<button data-v="'+n[0]+'"'+(n[0]==="receive"?' class="mid"':'')+'>'+ic(n[2],22)+'<span>'+n[1]+'</span></button>'}).join("")}
 var LG=0;
 function logoMark(h,solid){var id="lg"+(LG++);return '<svg height="'+h+'" width="'+Math.round(h*1.339)+'" viewBox="0 0 1000 747" role="img" aria-label="ukeflow"><defs><linearGradient id="'+id+'" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="747"><stop offset="0" stop-color="#D94B4B"/><stop offset=".5" stop-color="#E57A3F"/><stop offset="1" stop-color="#F5B82E"/></linearGradient></defs><g fill="'+(solid||'url(#'+id+')')+'"><polygon points="120.1,532.2 254.4,746.6 745.3,746.6 879.5,532.5 765.2,332.9 638.6,537.7 361.1,537.7 234.4,332.9"/><polygon points="579.3,0 766.6,332.9 1000,332.9 812.7,0"/><polygon points="420.7,0 187.3,0 0,332.9 233.4,332.9"/></g></svg>'}
@@ -196,7 +226,7 @@ function gate(){
   (c?'<label for="g_pw2">Confirm password</label><input id="g_pw2" type="password" autocomplete="new-password" placeholder="Type it again" onkeydown="if(event.key===\'Enter\')gSubmit()">':'')+
   '<div class="msg err" id="g_err" role="alert"></div><button class="btn" onclick="gSubmit()">'+(c?"Create password":"Log in")+'</button>'+
   (c?'':'<button class="link" onclick="forgot()">Forgot password?</button>')+
-  '<p class="gfoot">Prototype: your password is saved on this device only, as a secure hash. A live app checks it on the server.</p></div>';
+  '<p class="gfoot">Prototype: your password is saved on this device only, as a secure hash. A live app checks it on the server.<br>Version 12 Nov 2026</p></div>';
   var f=$("#g_pw");if(f&&f.focus)f.focus();
 }
 function toggleSee(){var a=$("#g_pw"),t=a.type==="password";a.type=t?"text":"password";var b=$("#g_pw2");if(b)b.type=a.type}
@@ -224,11 +254,13 @@ function splash(){var sp=$("#splash");setTimeout(function(){var m=document.query
 document.addEventListener("visibilitychange",function(){if(document.hidden)hiddenAt=Date.now();else if(unlocked&&hiddenAt&&Date.now()-hiddenAt>60000)lock()});
 function go(v,svc){S.view=v;if(svc)S.svc=svc;S.smsg=S.tmsg=S.err=S.rw="";render();window.scrollTo(0,0)}
 function render(){
-  clearInterval(T);
+  clearInterval(T);clearInterval(RT);
   document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.v===NAVMAP[S.view])});
-  $("#main").innerHTML={home:home,pay:pay,form:form,done:done,receive:receive,transfer:transfer,rewards:rewards,activity:activity}[S.view]();
+  $("#main").innerHTML={home:home,pay:pay,form:form,done:done,receive:receive,transfer:transfer,rewards:rewards,activity:activity,wallet:wallet,rates:rates}[S.view]();
   if(S.view==="form"&&S.svc==="intl")est();
   if(S.view==="home")setupCar();
+  if(S.view==="rates")startRates();
+  if(S.view==="receive"){var ce=document.querySelector(".cchips .on");if(ce&&ce.scrollIntoView)ce.scrollIntoView({inline:"center",block:"nearest"})}
 }
 function tiles(){
   var M={airtime:"phone",data:"wifi",power:"bolt",tv:"tv",bet:"dice"};
@@ -238,14 +270,60 @@ function tiles(){
   t.push('<button class="tile" onclick="go(\'rewards\')"><span class="ti">'+ic("gift",24)+'</span>Rewards</button>');
   return '<div class="grid">'+t.join("")+'</div>';
 }
+P.send='<path d="M7 17L17 7M9 7h8v8"/>';P.chev='<path d="M9 5l7 7-7 7"/>';P.wallet='<rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/>';P.refresh='<path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/>';
+function actIcon(h){if(h.k==="in")return"receive";if(h.k==="rw")return"gift";var M={"Airtime":"phone","Data":"wifi","Electricity":"bolt","Cable TV":"tv","Betting":"dice","International payment":"globe","Bank transfer":"bank"};return M[h.t]||"pay"}
+function actRows(n){
+  if(!S.hist.length)return '<div class="item" style="justify-content:center;text-align:center"><small>No activity yet. Receive crypto to get started.</small></div>';
+  return S.hist.slice(0,n).map(function(h){var plus=h.k!=="out",t=h.k==="in"?"Deposit · $"+h.usd.toFixed(2)+" "+h.asset:h.t,sb=h.k==="in"?"Converted to naira":h.sub;
+    return '<div class="item" style="align-items:center"><div style="display:flex;gap:12px;align-items:center"><span class="at2">'+ic(actIcon(h),20)+'</span><div><b>'+t+'</b><small>'+sb+'</small></div></div><b style="color:var(--'+(plus?"pos":"ink")+')">'+(plus?"+":"−")+fmt(h.net)+'</b></div>'}).join("");
+}
 function home(){
-  return '<div class="top"><div class="hi">'+logoMark(30)+'<span class="wm">ukeflow</span></div><span class="demo">Prototype</span></div>'+
-  '<small>Available balance <button class="eye" aria-label="Show or hide balance" onclick="S.hide=!S.hide;render()">'+ic('eye',18)+'</button></small>'+
-  '<div class="big">'+(S.hide?"₦••••••":fmt(S.bal))+'</div>'+
-  '<div class="acts"><button class="pill" onclick="go(\'receive\')">Receive</button><button class="pill" onclick="go(\'transfer\')">Transfer</button></div>'+
-  carousel()+
-  '<h2>Assets</h2>'+Object.keys(ASSETS).map(function(k){var a=ASSETS[k];
-    return '<button class="asset" onclick="S.asset=\''+k+'\';go(\'receive\')">'+coin(k,42)+'<span class="m"><b>'+a.name+'</b><small>'+k+'</small></span><span class="r"><b>$'+a.usd.toLocaleString("en-US",{minimumFractionDigits:2})+'</b><small>Demo price</small></span></button>'}).join("");
+  var v=S.bal.toFixed(2).split("."),ip=Number(v[0]).toLocaleString("en-NG"),sz=ip.length>9?.6:ip.length>6?.78:1;
+  var amt=S.hide?'••••••':'<span class="cur">₦</span>'+ip+'<span class="dec">.'+v[1]+'</span>';
+  var ring='<svg class="ring" viewBox="0 0 220 220" aria-hidden="true"><defs><linearGradient id="rg" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="200" y2="200"><stop offset="0" stop-color="#D94B4B"/><stop offset=".5" stop-color="#E57A3F"/><stop offset="1" stop-color="#F5B82E"/></linearGradient><filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter></defs><circle cx="110" cy="110" r="101" fill="rgba(255,255,255,.03)" stroke="url(#rg)" stroke-width="10" filter="url(#gl)" opacity=".8"/><circle cx="110" cy="110" r="101" fill="none" stroke="url(#rg)" stroke-width="5"/></svg>';
+  var pl=[["receive","Receive","receive","pr"],["send","Send","transfer",""],["bolt","Bills","pay",""],["gift","Rewards","rewards",""]].map(function(x){return '<button class="'+x[3]+'" onclick="go(\''+x[2]+'\')">'+ic(x[0],16)+x[1]+'</button>'}).join("");
+  var qp=Object.keys(SVC).map(function(k){return '<button class="tile" onclick="go(\'form\',\''+k+'\')"><span class="ti">'+ic({airtime:"phone",data:"wifi",power:"bolt",tv:"tv",bet:"dice"}[k],22)+'</span>'+SVC[k].t+'</button>'});
+  qp.push('<button class="tile" onclick="go(\'form\',\'intl\')"><span class="ti">'+ic("globe",22)+'</span>Africa</button>');
+  qp.push('<button class="tile" onclick="go(\'transfer\')"><span class="ti">'+ic("bank",22)+'</span>To bank</button>');
+  return '<div class="hero"><div class="top"><div class="hi">'+logoMark(28)+'<span class="wm">ukeflow</span></div><div style="display:flex;gap:8px"><button class="hbtn" aria-label="Reward points" onclick="go(\'rewards\')">'+ic("gift",18)+S.pts+'</button><button class="hbtn" aria-label="Activity" onclick="go(\'activity\')" style="padding:0 11px">'+ic("clock",18)+'</button></div></div>'+
+  '<div class="ringbox">'+ring+'<div class="rin"><small>Available balance</small><div class="amt" style="font-size:'+'calc(min(76vw,300px)*.19*'+sz+')">'+amt+'</div><button class="eye" style="color:#C9C2BC" aria-label="Show or hide balance" onclick="S.hide=!S.hide;render()">'+ic("eye",20)+'</button></div></div><div class="pills">'+pl+'</div></div>'+
+  '<div class="sheet"><button class="earn" onclick="go(\'rewards\')"><b>Earn on every payment</b><span>1 point for every ₦100 you spend.</span></button>'+carousel()+
+  '<h2>Quick pay</h2><div class="qp">'+qp.join("")+'</div><div style="display:flex;justify-content:space-between;align-items:baseline"><h2>Recent activity</h2><button class="seeall" onclick="go(\'activity\')">See all</button></div>'+actRows(3)+'</div>';
+}
+var RT=null;
+var ORDER=["USDT","USDC","BTC","ETH","BNB","TRX","SOL","LTC"];
+function mkt(){var t=S.rates&&S.rates.USDT;return t&&t.usd>0?t.ngn/t.usd:RATE}
+function fcoin(k){return 0.01+(ASSETS[k].xs||0)/100}
+function custRate(k){return mkt()*(1-fcoin(k)*1.075)}
+function rateText(k){return "$1 = ₦"+Math.round(custRate(k)).toLocaleString("en-NG")}
+function ratesStatus(){return !S.rates&&S.loading!==false?"Loading rates…":(S.live?"Live rates · updated "+S.ratesAt.toLocaleTimeString("en-NG"):"Demo rates. The live feed is unavailable right now.")}
+function ratesList(){
+  return ORDER.map(function(k){return '<div class="asset" style="cursor:default">'+coin(k,44)+'<span class="m"><b>'+k+'</b><small>'+ASSETS[k].name+'</small></span><span class="r"><b>'+rateText(k)+'</b></span></div>'}).join("");
+}
+function fetchRates(){
+  var ids=Object.keys(ASSETS).map(function(k){return ASSETS[k].cg}).join(",");
+  var done=function(){S.loading=false;if(S.view==="rates"){var l=$("#rt-list"),t=$("#rt-status");if(l)l.innerHTML=ratesList();if(t)t.textContent=ratesStatus()}};
+  if(typeof fetch!=="function"){done();return}
+  fetch("https://api.coingecko.com/api/v3/simple/price?ids="+ids+"&vs_currencies=usd,ngn&include_24hr_change=true")
+   .then(function(r){if(!r.ok)throw new Error("rates");return r.json()})
+   .then(function(j){var R={};Object.keys(ASSETS).forEach(function(k){var x=j[ASSETS[k].cg];if(x&&x.usd!=null)R[k]={usd:x.usd,ngn:x.ngn!=null?x.ngn:x.usd*RATE,chg:x.usd_24h_change==null?null:x.usd_24h_change}});
+     if(Object.keys(R).length){S.rates=R;S.live=true;S.ratesAt=new Date()}done()})
+   .catch(function(){done()});
+}
+function startRates(){fetchRates();RT=setInterval(fetchRates,30000)}
+function rates(){
+  return '<div class="hero"><div class="top"><button class="hbtn" aria-label="Back" onclick="go(\'wallet\')" style="padding:0 11px">'+ic("back",18)+'</button><div class="f" style="font-size:22px;font-weight:700">Rates</div><button class="hbtn" aria-label="Refresh rates" onclick="S.loading=true;fetchRates()" style="padding:0 11px">'+ic("refresh",18)+'</button></div><p id="rt-status" style="color:#C9C2BC;font-size:13px;text-align:center;margin:12px 0 18px">'+ratesStatus()+'</p></div>'+
+  '<div class="sheet"><div id="rt-list">'+ratesList()+'</div><p style="font-size:12px;margin-top:14px">Each rate is what you receive in naira for $1 of that coin, after our fee and the VAT on the fee. The final rate is confirmed when your deposit arrives. Market data from CoinGecko.</p></div>';
+}
+function wallet(){
+  var v=S.bal.toFixed(2).split("."),ip=Number(v[0]).toLocaleString("en-NG");
+  return '<div class="hero"><div class="top"><div class="hi">'+logoMark(28)+'<span class="wm">ukeflow</span></div><button class="hbtn" aria-label="Activity" onclick="go(\'activity\')" style="padding:0 11px">'+ic("clock",18)+'</button></div>'+
+  '<div class="f" style="font-size:22px;font-weight:700;text-align:center;margin:8px 0 16px">Wallet</div>'+
+  '<small style="color:#C9C2BC">Available balance <button class="eye" style="color:#C9C2BC" aria-label="Show or hide balance" onclick="S.hide=!S.hide;render()">'+ic("eye",18)+'</button></small>'+
+  '<div class="amt" style="font-size:44px;margin:4px 0 16px">'+(S.hide?"••••••":'<span class="cur">₦</span>'+ip+'<span class="dec">.'+v[1]+'</span>')+'</div>'+
+  '<div class="pills" style="justify-content:flex-start"><button class="pr" onclick="go(\'transfer\')">'+ic("send",16)+'Transfer</button><button onclick="go(\'rates\')">'+ic("refresh",16)+'Check rate</button></div></div>'+
+  '<div class="sheet"><div class="note"><span>Do not receive funds from sanctioned entities.</span><button class="seeall" onclick="S.note=!S.note;render()">'+(S.note?"Hide":"View here")+'</button>'+(S.note?'<p>Deposits linked to sanctioned or suspicious sources may be held or returned. Only receive funds from people and platforms you know and trust.</p>':'')+'</div>'+
+  '<h2>All wallets</h2>'+Object.keys(ASSETS).map(function(k){return '<button class="asset" onclick="S.asset=\''+k+'\';go(\'receive\')">'+coin(k,44)+'<span class="m"><b>'+ASSETS[k].name+' <small>'+k+'</small></b></span><span style="color:var(--muted)">'+ic("chev",20)+'</span></button>'}).join("")+'</div>';
 }
 function pay(){return '<h2>Pay &amp; send</h2><p>Balance: <b style="color:var(--ink)">'+fmt(S.bal)+'</b>. Earn 1 point for every ₦100 you spend.</p>'+tiles()+'<p style="margin-top:14px"><small>Demo: a live app delivers these through licensed bill-payment and payment partners.</small></p>'}
 function form(){
@@ -326,19 +404,19 @@ function copyText(t,id){
 function receive(){
   var a=ASSETS[S.asset];
   return '<h2>Receive crypto</h2><p>Copy your address and send from any wallet or exchange. No amount needed here.</p>'+
-  '<div class="seg">'+Object.keys(ASSETS).map(function(k){return '<button class="'+(S.asset===k?"on":"")+'" onclick="S.asset=\''+k+'\';S.smsg=\'\';render()">'+k+'</button>'}).join("")+'</div>'+
+  '<div class="cchips">'+Object.keys(ASSETS).map(function(k){return '<button class="'+(S.asset===k?"on":"")+'" onclick="S.asset=\''+k+'\';S.smsg=\'\';render()">'+coin(k,22)+k+'</button>'}).join("")+'</div>'+
   '<div class="card"><small>Network</small><div><b>'+a.net+'</b></div><div class="addr">DEMO-'+S.asset+'-'+REF+'-not-a-real-address</div>'+
   '<button class="btn" style="margin-top:0" onclick="copyText(\'DEMO-'+S.asset+'-'+REF+'-not-a-real-address\',\'cmsg\')">Copy address</button><div class="msg ok" id="cmsg"></div>'+
-  '<ul class="n"><li>Minimum deposit: <b>$'+MIN_USD+'</b>. Smaller deposits are not converted automatically.</li><li>Send only '+S.asset+' on '+a.net+'. Other assets or networks can be lost.</li><li>After your transfer confirms, it converts to naira and lands in your wallet.</li></ul></div>'+
+  '<ul class="n"><li>Today’s rate: <b>'+rateText(S.asset)+'</b>, after our fee and VAT.</li><li>Minimum deposit: <b>$'+MIN_USD+'</b>. Smaller deposits are not converted automatically.</li><li>Send only '+S.asset+' on '+a.net+'. Other assets or networks can be lost.</li><li>After your transfer confirms, it converts to naira and lands in your wallet.</li></ul></div>'+
   '<details><summary>Demo tool: simulate an incoming deposit</summary><div class="card"><label for="sim">Value received (USD)</label><input id="sim" inputmode="decimal" placeholder="e.g. 25" oninput="this.value=this.value.replace(/[^0-9.]/g,\'\')"><button class="btn" onclick="simulate()">Simulate deposit</button><div class="msg" id="smsg">'+S.smsg+'</div><small>Demo only: a live app detects real transfers on the network.</small></div></details>';
 }
 function simulate(){
   var usd=parseFloat($("#sim").value)||0,m=$("#smsg");
   if(usd<MIN_USD){m.innerHTML='<span class="err">That is below the $'+MIN_USD+' minimum, so it would not be converted automatically. Send at least $'+MIN_USD+'.</span>';return}
-  var g=usd*RATE,fee=g*0.01,vat=fee*0.075,net=g-fee-vat,bonus="";S.bal+=net;
+  var g=usd*mkt(),fee=g*fcoin(S.asset),vat=fee*0.075,net=g-fee-vat,bonus="";S.bal+=net;
   if(!S.fd){S.fd=true;S.pts+=50;S.life+=50;bonus=" +50 bonus points for your first deposit."}
   S.hist.unshift({k:"in",asset:S.asset,usd:usd,net:net,ts:new Date().toLocaleString("en-NG")});
-  S.smsg='<span class="ok">Received $'+usd.toFixed(2)+' of '+S.asset+'. Converted at ₦'+RATE.toLocaleString("en-NG")+' per $1. Fee '+fmt(fee)+', VAT '+fmt(vat)+'. <b>'+fmt(net)+'</b> added to your wallet.'+bonus+'</span>';
+  S.smsg='<span class="ok">Received $'+usd.toFixed(2)+' of '+S.asset+'. Market rate ₦'+Math.round(mkt()).toLocaleString("en-NG")+' per $1. Fee '+fmt(fee)+', VAT '+fmt(vat)+'. <b>'+fmt(net)+'</b> added to your wallet.'+bonus+'</span>';
   render();
 }
 function transfer(){
